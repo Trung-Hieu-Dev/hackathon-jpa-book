@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/act_test
-    username: codepresso
+    url: jdbc:mysql://127.0.0.1:3306/atc_jpashop?useSSL=FALSE&serverTimezone=UTC
+    username: root
     password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         show_sql: true
