@@ -19,7 +19,7 @@ public class Member {
     @Embedded // this field belong to this class
     private Address address;
     
-    @OneToMany(mappedBy = "member") // secondary use mappedBy
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) // secondary use mappedBy
     private List<Order> orders = new ArrayList<>();
     
 }
