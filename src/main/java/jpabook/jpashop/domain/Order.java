@@ -45,7 +45,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     
-    // Association Assist Method
+    //== Association Assist Method ==//
     // Member Entity
     public void setMember(Member member) {
         this.member = member;
