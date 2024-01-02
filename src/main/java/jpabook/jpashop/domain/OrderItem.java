@@ -26,4 +26,26 @@ public class OrderItem {
     
     private int count;
     
+    //== Business Logic Method ==//
+    /**
+     *  Cancel order item
+     * */
+    public void cancel() {
+        item.increaseStock(count);
+    }
+    
+    public int getTotalPrice() {
+        return orderPrice * count;
+    }
+    
+    //== Create Method ==//
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+        item.decreaseStock(count);
+        
+        return orderItem;
+    }
 }

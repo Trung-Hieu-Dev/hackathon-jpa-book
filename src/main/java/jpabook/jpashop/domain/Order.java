@@ -64,4 +64,52 @@ public class Order {
         delivery.setOrder(this);
     }
     
+    //== Business Logic Method ==//
+    /**
+     *  Cancel order
+     * */
+    public void cancel() {
+        // validation delivery status
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("Order can not cancelled once they are delivered!");
+        }
+        
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem: orderItems) {
+            orderItem.cancel();
+        }
+    }
+    
+    
+    /**
+     *  Retrieve total Order price
+     * */
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem: orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        
+        return totalPrice;
+    }
+    
+    
+    //== Create Method ==//
+    public static Order createOrder(
+            Member member,
+            Delivery delivery,
+            OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        order.setOrderDate(LocalDateTime.now());
+        order.setStatus(OrderStatus.ORDER);
+        
+        for (OrderItem orderItem: orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        
+        return order;
+    }
+    
 }
